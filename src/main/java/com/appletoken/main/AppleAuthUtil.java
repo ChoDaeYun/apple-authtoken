@@ -100,4 +100,25 @@ public class AppleAuthUtil {
         System.out.println(response.getStatus());      
         System.out.println(response.getBody());
     }
+    
+    
+    /**
+     * refreshToken 검증  1일 1회 검증 필요 (Apple 권고 사항 ?.... ) 
+     * @param refreshToken
+     * @throws Exception
+     */
+    public static void authRefreshToken(String refreshToken) throws Exception{
+        
+        String token = generateJWT();
+        HttpResponse<String> response = Unirest.post(AUTH_TOKEN)
+                  .header("Content-Type", "application/x-www-form-urlencoded")
+              .field("client_id", CLIENT_ID)
+              .field("client_secret", token)
+              .field("grant_type", "refresh_token")
+              .field("refresh_token", refreshToken)
+              .asString();
+        // 200 - OK , 400 - Bad Request 
+        System.out.println(response.getStatus());      
+        System.out.println(response.getBody());
+    }
 }

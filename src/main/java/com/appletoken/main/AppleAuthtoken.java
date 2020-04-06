@@ -13,5 +13,9 @@ public class AppleAuthtoken  {
 	     */
 	    String authorizationCode = "";
 	    AppleAuthUtil.authToken(authorizationCode);
+	    
+	    // id_token 
+	    String refreshToken = "";
+	    AppleAuthUtil.authRefreshToken(refreshToken);
 	}
 }
